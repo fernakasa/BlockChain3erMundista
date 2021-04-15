@@ -25,24 +25,31 @@ class Test(unittest.TestCase):
         self.assertEqual('a40bfe4dd0bf234716b76a3d5e75a40286e36b6849ccac735720151dc49c2662', test.hashBloque)
     
     def test_is_bloque_genesis_should_to_be_true_when_bloque_genesis_is_created(self):
-        #test = Blockchain()
-        self.assertEqual(0, test.cadena[0].index)
-        self.assertEqual("", test.cadena[0].correo)
-        self.assertEqual("", test.cadena[0].motivo)
-        self.assertEqual("0", test.cadena[0].hashArc)
-        self.assertEqual("0", test.cadena[0].hashAnt)
-        self.assertEqual("2021-01-01 00:00:00", test.cadena[0].timestamp)
+        bloque0 = test.getBloqueByIndex(0)
+        self.assertEqual(0, bloque0.index)
+        self.assertEqual("", bloque0.correo)
+        self.assertEqual("", bloque0.motivo)
+        self.assertEqual("0", bloque0.hashArc)
+        self.assertEqual("0", bloque0.hashAnt)
+        self.assertEqual("2021-01-01 00:00:00", bloque0.timestamp)
         self.assertEqual('efa3939f1f6768c242cb0e68ba9ad6cc10f10f7624f30a5cce51f640068b73c5', test.getHashByIndex(0))
     
     def test_is_bloque_One_should_to_be_true_when_bloque_One_is_created(self):
-        test.crearBloque("correo@bloqueOne.com", "prueba", "hashArc")
-        self.assertEqual(1, test.cadena[1].index)
-        self.assertEqual("correo@bloqueOne.com", test.cadena[1].correo)
-        self.assertEqual("prueba", test.cadena[1].motivo)
-        self.assertEqual("hashArc", test.cadena[1].hashArc)
-        self.assertEqual("efa3939f1f6768c242cb0e68ba9ad6cc10f10f7624f30a5cce51f640068b73c5", test.cadena[1].hashAnt)
-        self.assertEqual("2021-01-01 22:00:00", test.cadena[1].timestamp)
+        test._Blockchain__crearBloque("correo@bloqueOne.com", "prueba", "hashArc", "2021-01-01 22:00:00")
+        bloque1 = test.getBloqueByIndex(1)
+        self.assertEqual(1, bloque1.index)
+        self.assertEqual("correo@bloqueOne.com", bloque1.correo)
+        self.assertEqual("prueba", bloque1.motivo)
+        self.assertEqual("hashArc", bloque1.hashArc)
+        self.assertEqual("efa3939f1f6768c242cb0e68ba9ad6cc10f10f7624f30a5cce51f640068b73c5", bloque1.hashAnt)
+        self.assertEqual("2021-01-01 22:00:00", bloque1.timestamp)
         self.assertEqual('001dafe88b0d14e0cc71ce06947dd750f74a46c74d0fc0879484fa42a439b048', test.getHashByIndex(1))
+
+    def test_is_Singleton_should_to_be_true_when_Singleton_works(self):
+            testSingleton1 = Blockchain()
+            testSingleton2 = Blockchain()
+            message = "Test Singleton doesn't works"
+            self.assertTrue(id(testSingleton1) == id(testSingleton2), message)
 
 if __name__ == '__main__':
     unittest.main()

@@ -15,6 +15,17 @@ class Bloque:
         self.hashBloque = self.crearHash(zero_count)
 
     def crearHash(self, zero_count):
+        if zero_count == 0:
+            zero_count = 2 if (datetime.today().day % 2 == 0 ) else 1
+        while True:
+            newHash = self.hash()
+            if newHash[0:zero_count] == '0' * zero_count:
+                break
+            else:
+                self.nonce += 1
+        return newHash
+
+    def hash(self):
         hash = json.dumps(self.__dict__, sort_keys=True, default=json_util.default)
         return sha256(hash.encode()).hexdigest()
     

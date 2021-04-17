@@ -18,14 +18,15 @@ class Singleton(type):
 class Blockchain(metaclass=Singleton):
     def __init__(self):
         self.__cadena = []
-        self.__crearGenesis()
         self.__zero_count = 0
+        self.__crearGenesis()
+        
 
     def __crearGenesis(self):
         bloqueGenesis = Bloque(0, "", "", "0", "0", "2021-01-01 00:00:00", self.__zero_count)
         self.__cadena.append(bloqueGenesis)
     
-    def __crearBloque(self, cor, mot, hashArc, timestamp, ):
+    def __crearBloque(self, cor, mot, hashArc, timestamp):
         newBloque = Bloque(self.__getNextBloqueIndex(), cor, mot, hashArc, self.__getPreviusBloqueHash(), timestamp, self.__zero_count)
         self.__cadena.append(newBloque)
 

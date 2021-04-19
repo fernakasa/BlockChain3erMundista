@@ -28,4 +28,3 @@ class Bloque:
     def hash(self):
         hash = json.dumps(self.__dict__, sort_keys=True, default=json_util.default)
         return sha256(hash.encode()).hexdigest()
-    

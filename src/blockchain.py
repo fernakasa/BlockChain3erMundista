@@ -2,18 +2,9 @@ import os
 import sys
 import json
 from bson import json_util
-root_folder = os.path.abspath(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-sys.path.append(root_folder)
-
-from src.bloque import Bloque
+from singleton import Singleton
+from bloque import Bloque
 from datetime import datetime
-
-class Singleton(type):
-    __instances = {}
-    def __call__(cls, *args, **kwargs):
-        if cls not in cls.__instances:
-            cls.__instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
-        return cls.__instances[cls]
 
 class Blockchain(metaclass=Singleton):
     def __init__(self):
@@ -21,7 +12,6 @@ class Blockchain(metaclass=Singleton):
         self.__zero_count = 0
         self.__crearGenesis()
         
-
     def __crearGenesis(self):
         bloqueGenesis = Bloque(0, "", "", "0", "0", "2021-01-01 00:00:00", self.__zero_count)
         self.__cadena.append(bloqueGenesis)
@@ -51,3 +41,8 @@ class Blockchain(metaclass=Singleton):
 
     def setZero_count(self, count):
         self.__zero_count = count
+
+    def getBlockByHash(self, hash):
+        for bloque in self.__cadena:
+            if hash == bloque.hashBloque:
+                return bloque

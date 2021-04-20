@@ -29,7 +29,7 @@ class Blockchain(metaclass=Singleton):
         return self.getHashByIndex(self.__getNextBloqueIndex() - 1)
 
     def crearBloque(self, cor, mot, hashArc):
-        newBloque = Bloque(self.__getNextBloqueIndex(), cor, mot, hashArc, self.__getPreviusBloqueHash(), datetime.utcnow, self.__zero_count)
+        newBloque = Bloque(self.__getNextBloqueIndex(), cor, mot, hashArc, self.__getPreviusBloqueHash(), datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__zero_count)
         self.__cadena.append(newBloque)
 
     def getHashByIndex(self, index):
@@ -40,8 +40,7 @@ class Blockchain(metaclass=Singleton):
     
     def getJsonBloqueByIndex(self, index):
         bloque = self.__cadena[index]
-        print(json.dumps(bloque.__dict__, sort_keys=True, default=json_util.default))
-        return bloque
+        return json.dumps(bloque.__dict__, sort_keys=True, default=json_util.default)
 
     def setZero_count(self, count):
         self.__zero_count = count

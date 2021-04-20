@@ -12,7 +12,12 @@ sys.path.append(root_folder)
 from src.blockchain import Blockchain
 from src.bloque import Bloque
 
+#Creo la blockchain global que sera usada en los test
 test = Blockchain()
+#Agregro bloque1 a la blockchain
+test._Blockchain__crearBloque("correo@bloqueOne.com", "prueba", "hashArc", "2021-01-01 22:00:00")
+#Agregro bloque2 a la blockchain
+test._Blockchain__crearBloque("correo@bloqueOne.com", "pruebaBloque2", "hashArc", "2021-01-01 22:00:10")
 
 class BlockchainTest(unittest.TestCase):
     
@@ -27,7 +32,6 @@ class BlockchainTest(unittest.TestCase):
         self.assertEqual('074c114814e06a532e2d1576e6b2263b150bd9ea7794b1e4db86f8a65281071a', test.getHashByIndex(0))
     
     def test_2_is_bloque_One_should_to_be_true_when_bloque_One_is_created(self):
-        test._Blockchain__crearBloque("correo@bloqueOne.com", "prueba", "hashArc", "2021-01-01 22:00:00")
         bloque1 = test.getBloqueByIndex(1)
         self.assertEqual(1, bloque1.index)
         self.assertEqual("correo@bloqueOne.com", bloque1.correo)
@@ -38,7 +42,6 @@ class BlockchainTest(unittest.TestCase):
         self.assertEqual('05972bdddaffebafb024ab5f22c3acd65a9e81c0d514277715e60d36cc479024', test.getHashByIndex(1))
     
     def test_3_is_bloque_Two_should_to_be_true_when_bloque_two_is_created(self):
-        test._Blockchain__crearBloque("correo@bloqueOne.com", "pruebaBloque2", "hashArc", "2021-01-01 22:00:10")
         bloque2 = test.getBloqueByIndex(2)
         self.assertEqual(2, bloque2.index)
         self.assertEqual("correo@bloqueOne.com", bloque2.correo)
@@ -53,9 +56,9 @@ class BlockchainTest(unittest.TestCase):
         bloque = test.getBloqueByIndex(0)
         self.assertEqual(bloque, bloqueHash)
 
-    def test_is_bloque_to_JSON_should_to_be_true_when_string_are_equals(self):
+    def test_5_is_bloque_to_JSON_should_to_be_true_when_string_are_equals(self):
         bloque = test.getJsonBloqueByIndex(1)
         print(bloque)
+        self.assertEqual(json.loads(bloque)["index"], 1)
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == '__main__': unittest.main()

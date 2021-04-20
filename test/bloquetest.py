@@ -22,5 +22,4 @@ class BloqueTest(unittest.TestCase):
         self.assertEqual("2021-04-11 21:00:00", test.timestamp)
         self.assertEqual('0887a185101a6b5cbd5716d75ec940f5438ebf1f067f5ced2f62c668fb45eb12', test.hashBloque)
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == '__main__': unittest.main()

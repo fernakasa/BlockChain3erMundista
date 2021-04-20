@@ -18,5 +18,4 @@ class SingletonTest(unittest.TestCase):
             message = "Test Singleton doesn't works"
             self.assertTrue(id(testSingleton1) == id(testSingleton2), message)
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == '__main__': unittest.main()

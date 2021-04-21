@@ -13,7 +13,6 @@ from src.bloque import Bloque
 class BloqueTest(unittest.TestCase):
     def test_sera_true_cuando_bloque_es_creado(self):
         test = Bloque(0, 'correo@prueba.com', 'prueba', 'hash_archivo', 'hash_anterior', '2021-04-11 21:00:00', 0)
-        test.setDateTimeString = '10'
         self.assertEqual(0, test.index)
         self.assertEqual("correo@prueba.com", test.correo)
         self.assertEqual("prueba", test.motivo)

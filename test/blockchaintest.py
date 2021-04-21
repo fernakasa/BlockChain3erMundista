@@ -21,7 +21,7 @@ test._Blockchain__crearBloque("correo@bloqueOne.com", "pruebaBloque2", "hashArc"
 
 class BlockchainTest(unittest.TestCase):
     
-    def test_1_is_bloque_genesis_should_to_be_true_when_bloque_genesis_is_created(self):
+    def test_1_Sera_verdadero_cuando_Bloque_Genesis_exista(self):
         bloque0 = test.getBloqueByIndex(0)
         self.assertEqual(0, bloque0.index)
         self.assertEqual("", bloque0.correo)

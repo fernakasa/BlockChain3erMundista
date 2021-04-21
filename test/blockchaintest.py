@@ -19,6 +19,8 @@ test._Blockchain__crearBloque("correo@bloqueOne.com", "prueba", "hashArc", "2021
 #Agregro bloque2 a la blockchain
 test._Blockchain__crearBloque("correo@bloqueOne.com", "pruebaBloque2", "hashArc", "2021-01-01 22:00:10")
 
+
+#test de la blockchain
 class BlockchainTest(unittest.TestCase):
     
     def test_1_Sera_verdadero_cuando_Bloque_Genesis_exista(self):

@@ -60,7 +60,7 @@ class BlockchainTest(unittest.TestCase):
 
     def test_5_is_bloque_to_JSON_should_to_be_true_when_string_are_equals(self):
         bloque = test.getJsonBloqueByIndex(1)
-        print(bloque)
+        #print(bloque)
         self.assertEqual(json.loads(bloque)["index"], 1)
 
 if __name__ == '__main__': unittest.main()

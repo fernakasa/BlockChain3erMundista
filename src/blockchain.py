@@ -31,6 +31,7 @@ class Blockchain(metaclass=Singleton):
     def crearBloque(self, cor, mot, hashArc):
         newBloque = Bloque(self.__getNextBloqueIndex(), cor, mot, hashArc, self.__getPreviusBloqueHash(), datetime.now().strftime("%Y-%m-%d %H:%M:%S"), self.__zero_count)
         self.__cadena.append(newBloque)
+        return newBloque.hashBloque
 
     def getHashByIndex(self, index):
         return self.__cadena[index].hashBloque
